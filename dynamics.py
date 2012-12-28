@@ -28,6 +28,13 @@ class dynamics:
     def add_force(self, f):
         self.forces.append(f)
 
+    def get_force(self, i, j):
+        """ Get the force on particle i from particle j. """
+        assert(i < len(self.particles) and j < len(self.particles))
+        if( i <= j ): # We're storing "self forces" to ease index pain. See below
+            return self.forces[i][j]
+        else:
+            return -self.forces[j][i]
 
     def force(self, c, p1, p2):
         """Compute the force on particle 1, from particle 2."""
@@ -47,21 +54,17 @@ class dynamics:
     def go(self):
         for it in range(self.iteration_counter, self.max_iterations):
 
-            print "iteration: ", self.iteration_counter
-
             # Destroy the lists.  "Shitty"
             self.forces = []
             self.distances = []
         
             # Loop over all particles (keeping in mind f_ij = -f_ji    
             for i in range(0, len(self.particles)):
-                print "particle[", i, "]"
 
-                f_temp_list = []
-                d_temp_list = []
+                f_temp_list = [array([0., 0., 0.])] # Avoiding index gymnastics by storing diagonal. "Shitty"
+                d_temp_list = [0.]
 
                 for j in range(i+1, len(self.particles)):
-                    print "particle[", j, "]"
                     d_temp_vec = self.particles[i].pos - self.particles[j].pos
                     d_temp = sqrt(dot(d_temp_vec, d_temp_vec))
                     d_temp_list.append(d_temp)
@@ -78,7 +81,7 @@ class dynamics:
         print "========="
         print "Number of particles: ", len(self.particles)
         for p in self.particles:
-            print "particle: ", p.charge, p.pos, p.vel
+            print "particle: charge: ", p.charge, "\tposition: ", p.pos, "\tvelocity: ", p.vel
         print "distances = ", self.distances
         print "forces = ", self.forces
         print "time step = ", self.time_step
