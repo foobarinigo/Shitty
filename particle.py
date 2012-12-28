@@ -18,6 +18,11 @@ class particle:
     def set_velocity(self, velocity):
         self.vel = array([velocity[0], velocity[1], velocity[2]])
 
+    def dump():
+        print "charge = ", self.charge
+        print "position = ", self.pos
+        print "velocity = ", self.vel
+        
     def self_test(self):
         self.__init__(1.234, array([0.0, 0.0, 0.0]), array([0.0, 0.0, 0.0]))
         self.set_position(array([1.0, 2.0, 3.0]))
@@ -25,9 +30,7 @@ class particle:
 
         print "\nSelf Test:"
         print "==========\n"
-        print "charge = ", self.charge
-        print "position = ", self.pos
-        print "velocity = ", self.vel
+        self.dump()
 
     #   pos = [0.0, 0.0, 0.0]
     #   vel = [0.0, 0.0, 0.0]
