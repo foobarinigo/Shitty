@@ -2,41 +2,24 @@
 # 12/27/2012
 # shitty.py - a shitty n-body program
 
-from numpy import array
+from numpy import array, dot, sqrt
+from scipy import constants
+from particle import *
+from dynamics import *
 
-class dynamics:
-    """Hold important information about this simulation."""
-    def __init__(self, coupling_constant, max_iterations):
-        self.coupling_constant = coupling_constant
-        self.max_iterations = max_iterations
-        
-        self.distances = []
-        self.forces = []
-        self.min_distance = 1.0
-        self.time_step = 1.0
-        self.coupling_constant = 1.0
-        self.iteration_counter = 0
+def force(c, p1, p2):
+    """Compute the force on particle 1, from particle 2."""
+    vec_r = p2.pos - p1.pos
+    r = sqrt(dot(vec_r, vec_r))
+    f_mag = c * p1.charge * p2.charge / r**2. 
+    return f_mag * vec_r / r
     
-    def add_distance(self, d):
-        self.distances.append(d)
 
-    def add_force(self, f):
-        self.forces.append(f)
+def testing_program():
+    x = particle(1., [1., 2., 3.], [0., 0., 0.])
+    y = particle(1., [2., 3., 4.], [0., 0., 0.])
 
-    def self_test(self):
-        self.__init__(1.2, 3.4)
-        self.add_distance(1.0)
-        x = array([0.0, 1.0, 2.0])
-        self.add_force(x)
-        
-        print "\nSelf Test:"
-        print "==========\n"
-        print "distances = ", self.distances
-        print "forces = ", self.forces
-        print "minimum distance = ", self.min_distance
-        print "time step = ", self.time_step
-        print "coupling constant = ", self.coupling_constant
-        print "iteration counter = ", self.iteration_counter
+    print force(constants.G, x, y)
 
-x = dynamics(1.0, 2.0)
-x.self_test()
+
+testing_program()
