@@ -2,6 +2,7 @@ Shitty
 ======
 
 A (shitty) n-body gravity solver written in python
+Requires vPython and numPy
 
 Psuedocode
 
@@ -34,6 +35,7 @@ main():
   
   ## Do physics
   For each object in list:
+    Compute distances
     Compute local accelleration field
     Update object's acceleration
     Update object's velocity with last time step (store in iterable container)
