@@ -63,7 +63,6 @@ neptune = vparticle(m_neptune, [d_neptune, 0., 0.], [0., v_neptune, 0.], 3.88 * 
 # Setup the camera
 scene.range = 1.5 * AU
 scene.forward = (AU, .1 * AU, -.5 * AU)
-#label(pos = (0, -.025, 0), text = "Camera position: %1.5f %1.5f %1.5f" % (scene.forward[0], scene.forward[1], scene.forward[2]))
 
 # Can't see it anyway 
 # moon = vparticle(m_moon, [AU + d_moon, 0., 0.], [0., v_earth + v_moon, 0.], 10. * r_moon, color.white)

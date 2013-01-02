@@ -6,8 +6,9 @@ from dynamics import *
 
 class nbody_gravity(dynamics):
 
-    def __init__(self, max_iterations):
+    def __init__(self, max_iterations, soften_distance = 0.):
         dynamics.__init__(self, max_iterations)
+        self.softening = soften_distance
 
     def force(self, c, p1, p2):
         """Compute the force on particle 1, from particle 2."""
@@ -21,7 +22,7 @@ class nbody_gravity(dynamics):
             self.min_distance = r
 
         # Magnitude of force between.  There's no softening here, so shit will get crazy if the particles get too close
-        f_mag = - c * p1.charge * p2.charge / r**2. 
+        f_mag = - c * p1.charge * p2.charge / (r**2. + self.softening**2.)
 
         # Return array 
         return f_mag * vec_r / r
