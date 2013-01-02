@@ -1,5 +1,3 @@
-# J. Morgan
-# 12/27/2012
 # dynamics.py - a class to hold dynamical information
 
 from numpy import array, dot, sqrt
@@ -40,6 +38,7 @@ class dynamics:
                 self.particles[i].draw.pos = self.particles[i].pos
                 self.particles[i].draw.trail.append(pos = self.particles[i].pos)
 
+#            scene.forward = self.particles[0].pos - self.particles[1].pos
             self.iteration_counter += 1
         
     

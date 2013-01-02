@@ -41,5 +41,3 @@ class nbody_gravity(dynamics):
 
         return
 
-x = nbody_gravity(1)
-x.self_test()
