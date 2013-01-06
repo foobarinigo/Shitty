@@ -1,10 +1,10 @@
 # dynamics.py - a class to hold dynamical information
 
 from numpy import array, dot, sqrt
-from scipy import constants
 from visual import color, sphere
 from vparticle import *
-
+import notscipy as constants
+ 
 class dynamics:
     """Hold important information about this simulation."""
     def __init__(self, max_iterations):
@@ -71,3 +71,4 @@ class dynamics:
         print "\nSelf Test:"
         print "==========\n"
         self.dump()
+
