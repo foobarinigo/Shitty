@@ -11,9 +11,10 @@ AU = 1.4959e11
 pc = 3.0856e16
 
 # Simulation parameters
-num_stars = 1e3
+num_stars = 5e2
 star_mass = m_sun
-star_radius = r_sun
+# Draw each star as a curve so we don't have to waste so much time on lighting tiny spheres
+star_radius = 0.
 cluster_radius = 100 * pc
 random.seed(12345)
 

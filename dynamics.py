@@ -35,13 +35,11 @@ class dynamics:
             for i in range(0, len(self.particles)):
                 rate(60)
                 self.solve(i)
-                self.particles[i].draw.pos = self.particles[i].pos
-                self.particles[i].draw.trail.append(pos = self.particles[i].pos)
+                self.particles[i].draw_again()
 
-#            scene.forward = self.particles[0].pos - self.particles[1].pos
             self.iteration_counter += 1
         
-    
+    ## Housekeeping functions below    
     def dump(self):
         print "\nContents:"
         print "========="

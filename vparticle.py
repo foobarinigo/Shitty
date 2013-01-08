@@ -12,8 +12,18 @@ class vparticle(particle):
         # We need a way to verify initialization color is valid
         self.color = color
         self.radius = radius
-        self.draw = sphere(pos = self.pos, radius = self.radius, color = self.color)
-        self.draw.trail = curve(color = (.3, .3, .3))
+        if( self.radius == 0.):
+            self.draw = curve(pos = self.pos, color = self.color)
+        else:
+            self.draw = sphere(pos = self.pos, radius = self.radius, color = self.color)
+            self.draw.trail = curve(color = (.3, .3, .3))
+
+    def draw_again(self):
+        if( self.radius == 0.):
+            self.draw.append(pos = self.pos)
+        else:
+            self.draw.pos = self.pos
+            self.draw.trail.append(pos = self.pos)
 
     def dump():
         particle.dump()
